@@ -1,10 +1,18 @@
 {
     "name": "diskominfogithub/dicerorhinos-auth",
+    "license": "MIT",
     "description": "Authentication Module Pack",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "ariefkahfi",
-            "email": "ariefkahfi@gmail.com"
+            "email": "ariefkahfi@gmail.com",
+            "role": "Owner & Developer"
+        },
+        {
+            "name": "Bayu Ghara",
+            "email": "bayughara8@gmail.com",
+            "role": "Owner & Developer"
         }
     ],
     "autoload": {
