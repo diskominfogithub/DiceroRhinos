@@ -10,8 +10,8 @@
     "autoload": {
         "psr-4": {
             "Diskominfo\\":"src/",
-            "Diskominfo\\Model":"src/Models/",
-            "Diskominfo\\Middleware":"src/Middlewares/"
+            "Diskominfo\\Model\\":"src/Models/",
+            "Diskominfo\\Middleware\\":"src/Middlewares/"
         }
     },
     "require": {}
