@@ -1,3 +1,14 @@
 # DiceroRhinos Authentication
 
-User, Role, Opd Authentication module
+## APIs reference
+Dicero::login();
+
+Dicero::logout();
+
+Dicero::assignUserToRole($userId, $roleId);
+
+Dicero::newUser();
+
+Dicero::newRole();
+
+Dicero::getAuthenticatedUser();
