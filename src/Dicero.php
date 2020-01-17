@@ -65,11 +65,6 @@ class Dicero  {
             ->with("pesan","Anda berhasil logout");
     }
 
-    public static function assignUserToRole($userId, $roleId){
-        return "assignUserToRole user id : {$userId} , role id : {$roleId}";
-    }
-
-
     /*
         Dicero::newUser()
         create new user based on role_id and opd_id

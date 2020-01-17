@@ -5,10 +5,10 @@ Dicero::login();
 
 Dicero::logout();
 
-Dicero::assignUserToRole($userId, $roleId);
-
 Dicero::newUser();
 
 Dicero::newRole();
+
+Dicero::newOpd();
 
 Dicero::getAuthenticatedUser();
