@@ -2,9 +2,11 @@
 
 namespace Diskominfo;
 
+use Diskominfo\Model\Opd;
+use Diskominfo\Model\Role;
 use Diskominfo\Model\User;
 use Exception;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class Dicero  {
@@ -20,7 +22,7 @@ class Dicero  {
         // required form parameters
     */
     public static function login(){
-        $getUser = User::find(request()->username);
+        $getUser = User::where('username',request()->username)->first();
         
         // if user not exists in database
         // throw new Exception...
@@ -45,7 +47,7 @@ class Dicero  {
         // set $getUser into user's session
         request()->session('user',[
             'username'=>$getUser->username,
-            'roles'=>$getUser->getRoles(),
+            'role'=>$getUser->getRole(),
             'opd'=>$getUser->getOpd()
         ]); 
     }
@@ -67,15 +69,87 @@ class Dicero  {
         return "assignUserToRole user id : {$userId} , role id : {$roleId}";
     }
 
+
+    /*
+        Dicero::newUser()
+        create new user based on role_id and opd_id
+
+        // form parameter required
+            username
+            password
+            email
+            role_id
+            opd_id
+    */
     public static function newUser(){
-        return "new user";
+        $req = request();
+
+        $username = $req->username;
+        $password = $req->password;
+        $email = $req->email;
+
+        
+        try{
+            $role = Role::find($req->role_id);
+            $opd = Opd::find($req->opd_id);
+    
+            $user = new User();
+            $user->username = $username;
+            $user->password = $password;
+            $user->email = $email;
+            $user->getRole()->associate($role);
+            $user->getOpd()->associate($opd);
+            $result = $user->save();
+
+            return $result;
+        }catch(Exception $ex){
+            throw new Exception("Terjadi error, {$ex->getMessage()}");
+        }
     }
 
 
+    
+    /*
+        Dicero::newRole()
+        create new role
+
+        // form parameters required
+            nama_role
+    */
     public static function newRole(){
-        return "new role";
+        $req = request();
+
+        try {
+            $role = new Role();
+            $role->nama_role = $req->nama_role;
+            $result = $role->save();
+            return $result;
+        } catch (Exception $ex) {
+            throw new Exception("Terjadi error, {$ex->getMessage()}");
+        }
+        
     }
 
+
+    /*
+        Dicero::newOpd()
+        create new opd
+
+        // form parameters required
+            nama_opd
+    */
+    public static function newOpd(){
+        $req = request();
+
+        try {
+            $opd = new Opd();
+            $opd->nama_opd = $req->nama_opd;
+            $result = $opd->save();
+            return $result;
+        } catch (Exception $ex) {
+            throw new Exception("Terjadi error, {$ex->getMessage()}");
+        }
+    }
 
     /*
         Dicero::getAuthenticatedUser()
