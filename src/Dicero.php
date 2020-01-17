@@ -27,7 +27,7 @@ class Dicero  {
         // if user not exists in database
         // throw new Exception...
         if(!$getUser){
-            $username = request()->username();
+            $username = request()->username;
             throw new Exception("User dengan {$username} tidak ditemukan");
         }
 
@@ -45,11 +45,11 @@ class Dicero  {
         // if result === true
         // valid username and password
         // set $getUser into user's session
-        request()->session('user',[
-            'username'=>$getUser->username,
-            'role'=>$getUser->getRole(),
-            'opd'=>$getUser->getOpd()
-        ]); 
+        session([
+            'user'=>[
+                'username'=>$getUser->username,
+            ]
+        ]);
     }
 
     /*
