@@ -48,6 +48,8 @@ class Dicero  {
         session([
             'user'=>[
                 'username'=>$getUser->username,
+                "role"=>$getUser->getRole(),
+                "opd"=>$getUser->getOpd()
             ]
         ]);
     }
@@ -90,7 +92,7 @@ class Dicero  {
     
             $user = new User();
             $user->username = $username;
-            $user->password = $password;
+            $user->password = Hash::make($password);
             $user->email = $email;
             $user->getRole()->associate($role);
             $user->getOpd()->associate($opd);
