@@ -15,7 +15,7 @@ class DiceroMiddleware {
 
     // else
     // redirect back to default redirect page
-    public function handle($request , Closure $next){
+    public function handle($request , Closure $next , $role){
         $user = $request->session('user');
 
         if(!$user) {
@@ -26,12 +26,9 @@ class DiceroMiddleware {
 
         $username = $user->username;
         $roles = $user->getRole();
-        $route = $request->route();
         
-        $middlewares = $route->middleware();
         $isExists = false;
-
-        dd($middlewares);
+        dd($role);
 
         // if($isExists) { 
         //     return $next($request) ;
