@@ -18,33 +18,20 @@ class DiceroMiddleware {
     public function handle($request , Closure $next){
         $user = $request->session('user');
 
-
-        if($user){
+        if(!$user) {
             return redirect()
-                ->route("home")
-                ->with("pesan","With user");
-        } else {
-            return redirect()
-                ->route("home")
-                ->with("pesan","Without user");
+                ->route(config('dicero.default_redirect_page'))
+                ->with("pesan","Anda belum login");
         }
-        // if(!$user) {
-        //     return redirect()
-        //         ->route(config('dicero.default_redirect_page'))
-        //         ->with("pesan","Anda belum login");
-        // }
 
-        // $username = $user->username;
-        // $roles = $user->getRoles();
-        // $route = $request->route();
+        $username = $user->username;
+        $roles = $user->getRole();
+        $route = $request->route();
         
-        // $middlewares = $route->middleware();
-        // $isExists = false;
+        $middlewares = $route->middleware();
+        $isExists = false;
 
-        // $roles = array_map(function($v){
-        //     return $v->role_name;
-        // },$roles);
-
+        dd($middlewares);
 
         // if($isExists) { 
         //     return $next($request) ;
