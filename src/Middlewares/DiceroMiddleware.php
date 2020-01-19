@@ -30,7 +30,7 @@ class DiceroMiddleware {
         }
         // if(!$user) {
         //     return redirect()
-        //         ->route(env('DEFAULT_REDIRECT_PAGE'))
+        //         ->route(config('dicero.default_redirect_page'))
         //         ->with("pesan","Anda belum login");
         // }
 
@@ -50,7 +50,7 @@ class DiceroMiddleware {
         //     return $next($request) ;
         // }else {
         //     return redirect()
-        //         ->route(env('DEFAULT_REDIRECT_PAGE'))
+        //         ->route(config('dicero.default_redirect_page'))
         //         ->with("pesan","Username : {$username} tidak berhak mengakses halaman ini");  
         // } 
     }
