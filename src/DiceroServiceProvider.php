@@ -10,7 +10,7 @@ class DiceroServiceProvider extends ServiceProvider {
 
         $this->publishes([
             __DIR__.'/config/dicero.php' => config_path('dicero.php')
-        ]);
+        ],'config');
 
         $this->publishes([
             __DIR__.'/database/migrations/' => database_path('migrations')
