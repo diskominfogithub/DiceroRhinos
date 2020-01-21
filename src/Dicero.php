@@ -65,7 +65,7 @@ class Dicero  {
     public static function logout(){
         request()->session()->forget("user");
         return redirect()
-            ->route(env('DEFAULT_REDIRECT_PAGE'))
+            ->route(config('dicero.default_redirect_page'))
             ->with("pesan","Anda berhasil logout");
     }
 
