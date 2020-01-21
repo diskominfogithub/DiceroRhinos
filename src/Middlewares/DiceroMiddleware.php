@@ -24,8 +24,8 @@ class DiceroMiddleware {
                 ->with("pesan","Anda belum login");
         }
 
-        $username = $user->username;
-        $currentUserRole = $user->getRole();
+        $username = $user['username'];
+        $currentUserRole = $user['role']['nama_role'];
         $isExists = array_search($currentUserRole,$roles);
 
         if($isExists) { 
