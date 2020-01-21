@@ -28,12 +28,12 @@ class DiceroMiddleware {
         $currentUserRole = $user['role']['nama_role'];
         $isExists = array_search($currentUserRole,$roles);
 
-        if($isExists) { 
-            return $next($request) ;
-        }else {
+        if(gettype($isExists) === "boolean" && $isExists === FALSE){
             return redirect()
                 ->route(config('dicero.default_redirect_page'))
                 ->with("pesan","Username : {$username} tidak berhak mengakses halaman ini");  
-        } 
+        }
+        
+        return $next($request);
     }
 }
