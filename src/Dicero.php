@@ -48,8 +48,8 @@ class Dicero  {
         session([
             'user'=>[
                 'username'=>$getUser->username,
-                "role"=>$getUser->getRole()->attributesToArray(),
-                "opd"=>$getUser->getOpd()->attributesToArray()
+                "role"=>$getUser->getRole->attributesToArray(),
+                "opd"=>$getUser->getOpd->attributesToArray()
             ]
         ]);
     }
