@@ -21,20 +21,22 @@ class Dicero  {
         // password: string
         // required form parameters
     */
-    public static function login(){
-        $getUser = User::where('username',request()->username)->first();
+    public static function login(
+        $formParamUsername,
+        $formParamPassword
+    ){
+        $getUser = User::where('username',$formParamUsername)->first();
         
         // if user not exists in database
         // throw new Exception...
         if(!$getUser){
-            $username = request()->username;
-            throw new Exception("User dengan {$username} tidak ditemukan");
+            throw new Exception("User dengan {$formParamUsername} tidak ditemukan");
         }
 
         // next
         // check $req->password
         // and validate it against hashed password in database
-        $result = Hash::check(request()->password,$getUser->password);
+        $result = Hash::check($formParamPassword,$getUser->password);
 
         // if result === false
         // invalid password
@@ -78,17 +80,15 @@ class Dicero  {
             role_id
             opd_id
     */
-    public static function newUser(){
-        $req = request();
-
-        $username = $req->username;
-        $password = $req->password;
-        $email = $req->email;
+    public static function newUser($newUser){
+        $username = $newUser->username;
+        $password = $newUser->password;
+        $email = $newUser->email;
 
         
         try{
-            $role = Role::find($req->role_id);
-            $opd = Opd::find($req->opd_id);
+            $role = Role::find($newUser->role_id);
+            $opd = Opd::find($newUser->opd_id);
     
             $user = new User();
             $user->username = $username;
@@ -113,12 +113,12 @@ class Dicero  {
         // form parameters required
             nama_role
     */
-    public static function newRole(){
-        $req = request();
-
+    public static function newRole(
+        $reqNamaRole
+    ){
         try {
             $role = new Role();
-            $role->nama_role = $req->nama_role;
+            $role->nama_role = $reqNamaRole;
             $result = $role->save();
             return $result;
         } catch (Exception $ex) {
@@ -135,12 +135,10 @@ class Dicero  {
         // form parameters required
             nama_opd
     */
-    public static function newOpd(){
-        $req = request();
-
+    public static function newOpd($reqNamaOpd){
         try {
             $opd = new Opd();
-            $opd->nama_opd = $req->nama_opd;
+            $opd->nama_opd = $reqNamaOpd;
             $result = $opd->save();
             return $result;
         } catch (Exception $ex) {
