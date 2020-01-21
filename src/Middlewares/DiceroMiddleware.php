@@ -15,7 +15,7 @@ class DiceroMiddleware {
 
     // else
     // redirect back to default redirect page
-    public function handle($request , Closure $next , $role){
+    public function handle($request , Closure $next , ...$roles){
         $user = $request->session('user');
 
         if(!$user) {
@@ -25,17 +25,15 @@ class DiceroMiddleware {
         }
 
         $username = $user->username;
-        $roles = $user->getRole();
-        
-        $isExists = false;
-        dd($role);
+        $currentUserRole = $user->getRole();
+        $isExists = array_search($currentUserRole,$roles);
 
-        // if($isExists) { 
-        //     return $next($request) ;
-        // }else {
-        //     return redirect()
-        //         ->route(config('dicero.default_redirect_page'))
-        //         ->with("pesan","Username : {$username} tidak berhak mengakses halaman ini");  
-        // } 
+        if($isExists) { 
+            return $next($request) ;
+        }else {
+            return redirect()
+                ->route(config('dicero.default_redirect_page'))
+                ->with("pesan","Username : {$username} tidak berhak mengakses halaman ini");  
+        } 
     }
 }
