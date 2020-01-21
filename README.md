@@ -7,8 +7,19 @@
 
 1. composer require diskominfogithub/dicerorhinos-auth
 2. setelah paket terinstall di project, publish file `config` dan `migrations`
-3. publish file config `php artisan vendor:publish --tag=config`
-4. publish file migrations `php artisan vendor:publish --tag=migrations`
+3. tambahkan `Diskominfo\DiceroServiceProvider::class` di `config/app.php`
+
+```
+[
+    "providers" => [
+        ...,
+        Diskominfo\DiceroServiceProvider::class
+    ]
+]
+```
+
+4. publish file config `php artisan vendor:publish --tag=config`
+5. publish file migrations `php artisan vendor:publish --tag=migrations`
 
 
 
