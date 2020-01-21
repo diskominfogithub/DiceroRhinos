@@ -16,7 +16,7 @@ class DiceroMiddleware {
     // else
     // redirect back to default redirect page
     public function handle($request , Closure $next , ...$roles){
-        $user = $request->session('user');
+        $user = $request->session()->get('user');
 
         if(!$user) {
             return redirect()
