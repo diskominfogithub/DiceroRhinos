@@ -9,10 +9,10 @@ class User  extends Model{
     public $timestamps = false;
 
     public function getRole(){
-        return $this->belongsTo("Diskominfo\Model\Role");
+        return $this->belongsTo("Diskominfo\Model\Role","id_role");
     }
 
     public function getOpd(){
-        return $this->belongsTo("Diskominfo\Model\Opd");
+        return $this->belongsTo("Diskominfo\Model\Opd","id_opd");
     }
 }
