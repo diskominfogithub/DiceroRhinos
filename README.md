@@ -20,6 +20,15 @@
 
 4. publish file config `php artisan vendor:publish --tag=config`
 5. publish file migrations `php artisan vendor:publish --tag=migrations`
+6. publish file seeds `php artisan vendor:publish --tag=seeds`
+7. pada file `DatabaseSeeder.php` ubah
+
+```
+    public function run()
+    {
+        $this->call(DiceroSeeder::class);
+    }
+```
 
 
 
