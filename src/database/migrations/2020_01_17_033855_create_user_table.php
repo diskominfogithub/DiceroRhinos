@@ -12,11 +12,11 @@ class CreateUserTable extends Migration
             $table->bigIncrements('id_user');
             $table->string("username")->unique();
             $table->string("password")->nullable(false);
-            $table->string("email")->nullable(false);
+            $table->string("email")->nullable(true);
 
             // relasi many to one
             // user - role
-            $table->unsignedBigInteger("id_role");
+            $table->unsignedBigInteger("id_role")->nullable(true);
             $table
                 ->foreign("id_role")
                 ->references("id_role")
@@ -24,7 +24,7 @@ class CreateUserTable extends Migration
 
             // relasi many to one
             // user - opd
-            $table->unsignedBigInteger("id_opd");
+            $table->unsignedBigInteger("id_opd")->nullable(true);
             $table
                 ->foreign("id_opd")
                 ->references("id_opd")
