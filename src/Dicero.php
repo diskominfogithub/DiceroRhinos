@@ -47,6 +47,10 @@ class Dicero  {
         // if result === true
         // valid username and password
         // set $getUser into user's session
+
+        $getUserRole = $getUser->getRole ? $getUser->getRole : null ;
+        $getUserOpd = $getUser->getOpd ? $getUser->getOpd : null ;
+
         session([
             'user'=>[
                 'username'=>$getUser->username,
