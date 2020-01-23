@@ -19,7 +19,9 @@
         "psr-4": {
             "Diskominfo\\":"src/",
             "Diskominfo\\Model\\":"src/Models/",
-            "Diskominfo\\Middleware\\":"src/Middlewares/"
+            "Diskominfo\\Middleware\\":"src/Middlewares/",
+            "Diskominfo\\Database\\Migrations\\":"src/database/migrations/",
+            "Diskominfo\\Database\\Seeds\\":"src/database/seeds/"
         }
     },
     "require": {}

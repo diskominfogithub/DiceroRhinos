@@ -155,7 +155,20 @@ class Dicero  {
         get current authenticated user from session
     */
     public static function getAuthenticatedUser(){
-        return session('user');
+        return self::userObject();
+    }
+
+    public static function getUserRole(){
+        return self::userObject()->role;
+    }
+
+    private function userObject(){
+        $toJson = json_encode(session('user'));
+        return json_decode($toJson);
+    }
+
+    public static function getUserOpd(){
+        return self::userObject()->opd;
     }
 }
 
