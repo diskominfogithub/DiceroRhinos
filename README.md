@@ -21,7 +21,8 @@
 4. publish file config `php artisan vendor:publish --tag=config`
 5. publish file migrations `php artisan vendor:publish --tag=migrations`
 6. publish file seeds `php artisan vendor:publish --tag=seeds`
-7. pada file `DatabaseSeeder.php` ubah
+7. publish file helpers `php artisan vendor:publish --tag=helpers`
+8. pada file `DatabaseSeeder.php` ubah
 
 ```
     public function run()
@@ -70,3 +71,6 @@
 `$reqNamaOpd` nama opd baru yang akan dibuat
 
 6. `Dicero::getAuthenticatedUser()`, melihat user yang sedang terotentikasi
+
+### Dicero's helpers
+
