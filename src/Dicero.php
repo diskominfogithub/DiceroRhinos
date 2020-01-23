@@ -162,7 +162,7 @@ class Dicero  {
         return self::userObject()->role;
     }
 
-    private function userObject(){
+    private static function userObject(){
         $toJson = json_encode(session('user'));
         return json_decode($toJson);
     }
