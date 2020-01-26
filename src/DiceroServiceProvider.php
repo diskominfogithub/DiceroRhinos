@@ -21,7 +21,7 @@ class DiceroServiceProvider extends ServiceProvider {
         ], 'seeds');
 
         $this->publishes([
-            __DIR__.'/database/helpers/' => app_path()
+            __DIR__.'/helpers/' => app_path()
         ],'helpers');
     }
 }
