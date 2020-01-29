@@ -10,7 +10,9 @@ class CreateRoleTable extends Migration
     {
         Schema::create('role', function (Blueprint $table) {
             $table->bigIncrements('id_role');
-            $table->string("nama_role")->nullable(false);
+            $table->string("nama_role")
+                ->unique()
+                ->nullable(false);
         });
     }
 
