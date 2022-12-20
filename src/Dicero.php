@@ -59,6 +59,7 @@ class Dicero
                 "username" => $getUser->username,
                 "nip" => $getUser->nip,
                 "nama" => $getUser->nama,
+                "jenis_kelamin" => $getUser->jenis_kelamin,
                 "role" => $getUserRole,
                 "opd" => $getUserOpd
             ]
