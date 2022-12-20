@@ -1,8 +1,5 @@
 # DiceroRhinos Authentication
 
-
-
-
 ### Cara pakai
 
 1. composer require diskominfogithub/dicerorhinos-auth
@@ -31,12 +28,10 @@
     }
 ```
 
-
-
 ### Dicero
 
 1. `Dicero::login($formParamUsername,$formParamPassword)`
-, setelah login maka `Dicero` akan me-set nilai session dengan key `user`
+   , setelah login maka `Dicero` akan me-set nilai session dengan key `user`
 
 ```
     [
@@ -53,7 +48,7 @@
 2. `Dicero::logout()`, logout (membersihkan session)
 
 3. `Dicero::newUser($newUser)`, parameter
-`$newUser` menerima tipe `array associative`
+   `$newUser` menerima tipe `array associative`
 
 ```
 [
@@ -68,9 +63,10 @@
 4. `Dicero::newRole($reqNamaRole)`, `$reqNamaRole` nama role baru yang akan dibuat
 
 5. `Dicero::newOpd($reqNamaOpd)`,
-`$reqNamaOpd` nama opd baru yang akan dibuat
+   `$reqNamaOpd` nama opd baru yang akan dibuat
 
 6. `Dicero::getAuthenticatedUser()`, melihat user yang sedang terotentikasi
 
-### Dicero's helpers
+7. `Dicero::getAllUser()`, melihat semua User
 
+### Dicero's helpers

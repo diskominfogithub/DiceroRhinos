@@ -9,7 +9,8 @@ use Exception;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class Dicero  {
+class Dicero
+{
 
     /*
         Dicero::login(Request $req)
@@ -24,23 +25,23 @@ class Dicero  {
     public static function login(
         $formParamUsername,
         $formParamPassword
-    ){
-        $getUser = User::where('username',$formParamUsername)->first();
-        
+    ) {
+        $getUser = User::where('username', $formParamUsername)->first();
+
         // if user not exists in database
         // throw new Exception...
-        if(!$getUser){
+        if (!$getUser) {
             throw new Exception("User dengan {$formParamUsername} tidak ditemukan");
         }
 
         // next
         // check $req->password
         // and validate it against hashed password in database
-        $result = Hash::check($formParamPassword,$getUser->password);
+        $result = Hash::check($formParamPassword, $getUser->password);
 
         // if result === false
         // invalid password
-        if(!$result){
+        if (!$result) {
             throw new Exception("Error, Username atau password yang anda masukkan salah");
         }
 
@@ -48,30 +49,36 @@ class Dicero  {
         // valid username and password
         // set $getUser into user's session
 
-        $getUserRole = $getUser->getRole ? $getUser->getRole : null ;
-        $getUserOpd = $getUser->getOpd ? $getUser->getOpd : null ;
+        $getUserRole = $getUser->getRole ? $getUser->getRole : null;
+        $getUserOpd = $getUser->getOpd ? $getUser->getOpd : null;
 
         session([
-            'user'=>[
-                'username'=>$getUser->username,
-                "role"=>$getUserRole,
-                "opd"=>$getUserOpd
+            'user' => [
+                "id_user" => $getUser->id_user,
+                #username is nik
+                "username" => $getUser->username,
+                "nip" => $getUser->nip,
+                "nama" => $getUser->nama,
+                "role" => $getUserRole,
+                "opd" => $getUserOpd
             ]
         ]);
     }
 
     /*
-        Dicero::logout(Request $req)  
+        Dicero::logout(Request $req)
         logout authenticated user
 
         no form parameters required
     */
-    public static function logout(){
+    public static function logout()
+    {
         request()->session()->forget("user");
         return redirect()
             ->route(config('dicero.default_redirect_page'))
-            ->with("pesan","Anda berhasil logout");
+            ->with("pesan", "Anda berhasil logout");
     }
+
 
     /*
         Dicero::newUser()
@@ -84,16 +91,17 @@ class Dicero  {
             role_id
             opd_id
     */
-    public static function newUser($newUser){
+    public static function newUser($newUser)
+    {
         $username = $newUser->username;
         $password = $newUser->password;
         $email = $newUser->email;
 
-        
-        try{
+
+        try {
             $role = Role::find($newUser->role_id);
             $opd = Opd::find($newUser->opd_id);
-    
+
             $user = new User();
             $user->username = $username;
             $user->password = Hash::make($password);
@@ -103,13 +111,13 @@ class Dicero  {
             $result = $user->save();
 
             return $result;
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             throw new Exception("Terjadi error, {$ex->getMessage()}");
         }
     }
 
 
-    
+
     /*
         Dicero::newRole()
         create new role
@@ -119,7 +127,7 @@ class Dicero  {
     */
     public static function newRole(
         $reqNamaRole
-    ){
+    ) {
         try {
             $role = new Role();
             $role->nama_role = $reqNamaRole;
@@ -128,7 +136,6 @@ class Dicero  {
         } catch (Exception $ex) {
             throw new Exception("Terjadi error, {$ex->getMessage()}");
         }
-        
     }
 
 
@@ -139,7 +146,8 @@ class Dicero  {
         // form parameters required
             nama_opd
     */
-    public static function newOpd($reqNamaOpd){
+    public static function newOpd($reqNamaOpd)
+    {
         try {
             $opd = new Opd();
             $opd->nama_opd = $reqNamaOpd;
@@ -154,21 +162,37 @@ class Dicero  {
         Dicero::getAuthenticatedUser()
         get current authenticated user from session
     */
-    public static function getAuthenticatedUser(){
+    public static function getAuthenticatedUser()
+    {
         return self::userObject();
     }
 
-    public static function getUserRole(){
+    public static function getUserRole()
+    {
         return self::userObject()->role;
     }
 
-    private static function userObject(){
+    private static function userObject()
+    {
         $toJson = json_encode(session('user'));
         return json_decode($toJson);
     }
 
-    public static function getUserOpd(){
+    public static function getUserOpd()
+    {
         return self::userObject()->opd;
     }
-}
 
+    public static function getuser()
+    {
+        $user = session('user');
+        return $user;
+    }
+
+    public static function getAllUser()
+    {
+        $user = User::all()->where('id_role', '!=', 1);
+
+        return $user;
+    }
+}
