@@ -22,8 +22,10 @@ class Dicero
         // password: string
         // required form parameters
     */
-    public static function login($formParamUsername, $formParamPassword)
-    {
+    public static function login(
+        $formParamUsername,
+        $formParamPassword
+    ) {
         $getUser = User::where('username', $formParamUsername)->first();
 
         // if user not exists in database
@@ -50,7 +52,6 @@ class Dicero
         $getUserRole = $getUser->getRole ? $getUser->getRole : null;
         $getUserOpd = $getUser->getOpd ? $getUser->getOpd : null;
 
-        $req->session()->put("is_login", true);
         $idOpd = $getUser->id_opd;
         $nama = $getUser->username;
 
@@ -66,6 +67,7 @@ class Dicero
                     "jenis_kelamin" => $getUser->jenis_kelamin,
                     "role" => $getUserRole,
                     "opd" => $getUserOpd,
+                    "is_login" => \true,
                     "is_opd" => \true
                 ]
             ]);
@@ -81,6 +83,7 @@ class Dicero
                     "jenis_kelamin" => $getUser->jenis_kelamin,
                     "role" => $getUserRole,
                     "opd" => $getUserOpd,
+                    "is_login" => \true,
                     "is_admin" => \true
                 ]
             ]);
