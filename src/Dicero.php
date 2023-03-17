@@ -22,10 +22,8 @@ class Dicero
         // password: string
         // required form parameters
     */
-    public static function login(
-        $formParamUsername,
-        $formParamPassword
-    ) {
+    public static function login($formParamUsername, $formParamPassword)
+    {
         $getUser = User::where('username', $formParamUsername)->first();
 
         // if user not exists in database
@@ -52,18 +50,41 @@ class Dicero
         $getUserRole = $getUser->getRole ? $getUser->getRole : null;
         $getUserOpd = $getUser->getOpd ? $getUser->getOpd : null;
 
-        session([
-            'user' => [
-                "id_user" => $getUser->id_user,
-                #username is nik
-                "username" => $getUser->username,
-                "nip" => $getUser->nip,
-                "nama" => $getUser->nama,
-                "jenis_kelamin" => $getUser->jenis_kelamin,
-                "role" => $getUserRole,
-                "opd" => $getUserOpd
-            ]
-        ]);
+        $req->session()->put("is_login", true);
+        $idOpd = $getUser->id_opd;
+        $nama = $getUser->username;
+
+        if ($idOpd) {
+
+            session([
+                'user' => [
+                    "id_user" => $getUser->id_user,
+                    #username is nik
+                    "username" => $getUser->username,
+                    "nip" => $getUser->nip,
+                    "nama" => $getUser->nama,
+                    "jenis_kelamin" => $getUser->jenis_kelamin,
+                    "role" => $getUserRole,
+                    "opd" => $getUserOpd,
+                    "is_opd" => \true
+                ]
+            ]);
+        } else {
+
+            session([
+                'user' => [
+                    "id_user" => $getUser->id_user,
+                    #username is nik
+                    "username" => $getUser->username,
+                    "nip" => $getUser->nip,
+                    "nama" => $getUser->nama,
+                    "jenis_kelamin" => $getUser->jenis_kelamin,
+                    "role" => $getUserRole,
+                    "opd" => $getUserOpd,
+                    "is_admin" => \true
+                ]
+            ]);
+        }
     }
 
     /*
