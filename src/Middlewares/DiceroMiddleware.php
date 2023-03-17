@@ -1,6 +1,6 @@
 <?php
 
-namespace Diskominfo\Middleware;
+namespace Diskominfo\Middlewares;
 
 use Closure;
 
