@@ -14,6 +14,8 @@ class DiceroServiceProvider extends ServiceProvider {
              __DIR__.'/database/seeds/' => database_path('seeds'),
             __DIR__.'/helpers/' => app_path()
         ],'all');
+        
+        $this->loadMiddleware();
     }
     
     protected function loadMiddleware()
