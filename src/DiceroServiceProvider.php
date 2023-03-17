@@ -15,4 +15,12 @@ class DiceroServiceProvider extends ServiceProvider {
             __DIR__.'/helpers/' => app_path()
         ],'all');
     }
+    
+    protected function loadMiddleware()
+    {
+        app('router')->aliasMiddleware('auth.login', AuthLogin::class);
+        app('router')->aliasMiddleware('opd.login', MustLogin::class);
+        app('router')->aliasMiddleware('admin.login', AdminLogin::class);
+       
+    }
 }
