@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Diskominfo\Middlewares\AuthLogin;
 use Diskominfo\Middlewares\MustLogin;
 use Diskominfo\Middlewares\AdminLogin;
+use Diskominfo\Middlewares\DiceroMiddleware;
 
 class DiceroServiceProvider extends ServiceProvider
 {
