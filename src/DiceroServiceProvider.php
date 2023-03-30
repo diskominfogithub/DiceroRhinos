@@ -28,5 +28,6 @@ class DiceroServiceProvider extends ServiceProvider
         app('router')->aliasMiddleware('auth.login', AuthLogin::class);
         app('router')->aliasMiddleware('opd.login', MustLogin::class);
         app('router')->aliasMiddleware('admin.login', AdminLogin::class);
+        app('router')->aliasMiddleware('role', DiceroMiddleware::class);
     }
 }
