@@ -24,8 +24,7 @@ class DiceroMiddleware
 
         if (!$user) {
             Alert::warning("Gagal", "Anda belum login");
-            return redirect()
-                ->route(config('dicero.default_redirect_page'));
+            return redirect()->back();
         }
 
         $username = $user['username'];
@@ -34,8 +33,7 @@ class DiceroMiddleware
 
         if (gettype($isExists) === "boolean" && $isExists === FALSE) {
             Alert::warning("Gagal", "Username : {$username} tidak berhak mengakses halaman ini");
-            return redirect()
-                ->route(config('dicero.default_redirect_page'));
+            return redirect()->back();
         }
 
         return $next($request);
