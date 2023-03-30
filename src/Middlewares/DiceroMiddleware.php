@@ -3,6 +3,7 @@
 namespace Diskominfo\Middlewares;
 
 use Closure;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DiceroMiddleware
 {
@@ -22,9 +23,9 @@ class DiceroMiddleware
         $user = $request->session()->get('user');
 
         if (!$user) {
+            Alert::warning("Gagal", "Anda belum login");
             return redirect()
-                ->route(config('dicero.default_redirect_page'))
-                ->with("pesan", "Anda belum login");
+                ->route(config('dicero.default_redirect_page'));
         }
 
         $username = $user['username'];
@@ -32,9 +33,9 @@ class DiceroMiddleware
         $isExists = array_search($currentUserRole, $roles);
 
         if (gettype($isExists) === "boolean" && $isExists === FALSE) {
+            Alert::warning("Gagal", "Username : {$username} tidak berhak mengakses halaman ini");
             return redirect()
-                ->route(config('dicero.default_redirect_page'))
-                ->with("pesan", "Username : {$username} tidak berhak mengakses halaman ini");
+                ->route(config('dicero.default_redirect_page'));
         }
 
         return $next($request);
