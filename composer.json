@@ -24,7 +24,7 @@
             "Diskominfo\\Database\\Seeds\\":"src/database/seeds/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "v2",
     "prefer-stable": true,
     "require": {}
 }
