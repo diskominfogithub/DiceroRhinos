@@ -2,7 +2,7 @@
     "name": "diskominfogithub/dicerorhinos-auth",
     "license": "MIT",
     "description": "Authentication Module Pack",
-    "version": "v2",
+    "version": "dev",
     "authors": [
         {
             "name": "ariefkahfi",
