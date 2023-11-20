@@ -23,6 +23,5 @@
             "Diskominfo\\Database\\Migrations\\":"src/database/migrations/",
             "Diskominfo\\Database\\Seeds\\":"src/database/seeds/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
