@@ -4,7 +4,7 @@
 namespace Diskominfo\Middlewares;
 
 use Closure;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthLogin
 {
@@ -15,8 +15,8 @@ class AuthLogin
             return $next($request);
         }
 
+        Alert::error('Login Gagal!', 'Username atau Password Salah!');
         return redirect()
-            ->route("view_login")
-            ->with("pesan", "login terlebih dahulu");
+            ->route("view_login");
     }
 }
