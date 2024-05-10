@@ -72,5 +72,10 @@
 6. `Dicero::getAuthenticatedUser()`, melihat user yang sedang terotentikasi
 
 7. `Dicero::getAllUser()`, melihat semua User
-
+8. catatan untuk middleware pada routes
+```
+->middleware('admin.login') untuk middleware superadmin
+->middleware('opd.login') untuk middleware opd
+->middleware('auth.login') untuk middleware semua (all)
+```
 ### Dicero's helpers
