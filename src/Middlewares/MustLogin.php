@@ -3,6 +3,7 @@
 
 namespace Diskominfo\Middlewares;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use Closure;
 
 class MustLogin
@@ -17,8 +18,9 @@ class MustLogin
         if ($isOpd) {
             return $next($request);
         }
+
+        Alert::error("pesan", "login sebagai opd terlebih dahulu");
         return redirect()
-            ->route("view_login")
-            ->with("pesan", "login sebagai opd terlebih dahulu");
+            ->route("view_login");
     }
 }
