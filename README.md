@@ -2,10 +2,10 @@
 
 ### Cara pakai
 
-1. `composer require diskominfogithub/dicerorhinos-auth`
-2. `composer require realrashid/sweet-alert`
-2. setelah paket terinstall di project, publish file `config` dan `migrations`
-3. tambahkan `Diskominfo\DiceroServiceProvider::class` di `config/app.php`
+1. ```composer require diskominfogithub/dicerorhinos-auth```
+2. ```composer require realrashid/sweet-alert```
+3. setelah paket terinstall di project, publish file `config` dan `migrations`
+4. tambahkan ```Diskominfo\DiceroServiceProvider::class``` di `config/app.php`
 
 ```
 [
