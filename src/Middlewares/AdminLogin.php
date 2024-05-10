@@ -4,7 +4,7 @@
 namespace Diskominfo\Middlewares;
 
 use Closure;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminLogin
 {
@@ -18,8 +18,8 @@ class AdminLogin
             return $next($request);
         }
 
+        Alert::error("pesan", "anda harus login sebagai admin terlebih dahulu");
         return redirect()
-            ->route("view_login")
-            ->with("pesan", "anda harus login sebagai admin terlebih dahulu");
+            ->route("view_login");
     }
 }
