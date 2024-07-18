@@ -60,7 +60,7 @@ class Dicero
             session([
                 'user' => [
                     "id_user" => $getUser->id_user,
-                    #username is nik
+                    "nik" => $getUser->nik,
                     "username" => $getUser->username,
                     "nip" => $getUser->nip,
                     "nama" => $getUser->nama,
@@ -76,7 +76,7 @@ class Dicero
             session([
                 'user' => [
                     "id_user" => $getUser->id_user,
-                    #username is nik
+                    "nik" => $getUser->nik,
                     "username" => $getUser->username,
                     "nip" => $getUser->nip,
                     "nama" => $getUser->nama,
