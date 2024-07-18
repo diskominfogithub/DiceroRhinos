@@ -10,13 +10,17 @@ class CreateUserTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id_user');
-             $table->string('nik', 100)->nullable()->unique();
-            $table->string('nama', 100)->nullable();
-            $table->string('nip', 100)->nullable()->unique();
             $table->string("username")->unique();
-            $table->string('jenis_kelamin', 100)->nullable();
             $table->string("password")->nullable(false);
             $table->string("email")->nullable(true);
+            $table->string('nik', 100)->nullable()->unique();
+            $table->string('nip', 100)->nullable()->unique();
+            $table->string('nama', 100)->nullable();
+            $table->string('jenis_kelamin', 100)->nullable();
+            $table->string('tempat_lahir', 100)->nullable();
+            $table->date('tgl_lahir')->nullable();
+            $table->longText('alamat')->nullable();
+            $table->string('api_token', 80)->nullable();
 
             // relasi many to one
             // user - role
