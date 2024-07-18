@@ -56,7 +56,6 @@ class Dicero
         $nama = $getUser->username;
 
         if ($idOpd) {
-
             session([
                 'user' => [
                     "id_user" => $getUser->id_user,
@@ -65,6 +64,9 @@ class Dicero
                     "nip" => $getUser->nip,
                     "nama" => $getUser->nama,
                     "jenis_kelamin" => $getUser->jenis_kelamin,
+                    "tempat_lahir" => $getUser->tempat_lahir,
+                    "tgl_lahir" => $getUser->tgl_lahir,
+                    "alamat" => $getUser->alamat,
                     "role" => $getUserRole,
                     "opd" => $getUserOpd,
                     "is_login" => \true,
@@ -81,6 +83,9 @@ class Dicero
                     "nip" => $getUser->nip,
                     "nama" => $getUser->nama,
                     "jenis_kelamin" => $getUser->jenis_kelamin,
+                    "tempat_lahir" => $getUser->tempat_lahir,
+                    "tgl_lahir" => $getUser->tgl_lahir,
+                    "alamat" => $getUser->alamat,
                     "role" => $getUserRole,
                     "opd" => $getUserOpd,
                     "is_login" => \true,
