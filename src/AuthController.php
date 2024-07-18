@@ -104,18 +104,43 @@ class AuthController extends Controller
         }
     }
 
-    public function submitRegister(Request $req)
+  public function submitRegister(Request $req)
     {
-        $newUser = new User();
+    $newUser = new User();
 
-        $newUser->username = $req->username;
-        $newUser->password = Hash::make($req->password);
-        $newUser->id_opd = $req->id_opd;
-        $newUser->save();
+    $newUser->nik = $req->nik;
+    $newUser->nip = $req->nip;
+    $newUser->nama = $req->nama;
+    $newUser->username = $req->username;
+    $newUser->password = Hash::make($req->password);
+    $newUser->email = $req->email;
+    $newUser->jenis_kelamin = $req->jenis_kelamin;
+    $newUser->tempat_lahir = $req->tempat_lahir;
+    $newUser->tgl_lahir = $req->tgl_lahir;
+    $newUser->alamat = $req->alamat;
 
-        Alert::success('Berhasil!', 'Berhasil Daftar Admin');
-        return redirect()
-            ->back();
+    // Membuat token API
+    $token = Str::random(60);
+    $newUser->api_token = hash('sha256', $token);
+
+    // Menyimpan sementara untuk mendapatkan ID
+    $newUser->save();
+
+    // Mengasosiasikan role dan OPD setelah mendapatkan ID user
+    $role = Role::find($req->role_id);  // Menggunakan $req->role_id untuk menemukan role
+    $opd = Opd::find($req->id_opd);     // Menggunakan $req->id_opd untuk menemukan OPD
+    
+    // Mengasosiasikan role dan OPD menggunakan metode getRole() dan getOpd()
+    $newUser->getRole()->associate($role);
+    $newUser->getOpd()->associate($opd);
+
+    // Menyimpan kembali perubahan asosiasi
+    $newUser->save();
+
+    // Menampilkan pesan sukses
+    Alert::success('Berhasil!', 'Berhasil Daftar Admin');
+    
+    return redirect()->back();
     }
 
 
