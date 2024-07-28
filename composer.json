@@ -3,6 +3,8 @@
     "license": "MIT",
     "description": "Authentication Module Pack",
     "version": "dev",
+    "minimum-stability": "dev",
+    "prefer-stable": true
     "authors": [
         {
             "name": "ariefkahfi",
