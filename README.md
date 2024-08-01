@@ -4,7 +4,7 @@
 
 1. Lakukan instalasi package
    ```
-   composer require diskominfogithub/dicerorhinos-auth
+   composer require diskominfogithub/dicerorhinos-auth:dev-master
    ```
 2. Lakukan instalasi package sweet-aler
    ```
