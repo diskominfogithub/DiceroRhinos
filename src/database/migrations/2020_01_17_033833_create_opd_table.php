@@ -16,6 +16,7 @@ class CreateOpdTable extends Migration
         Schema::create('opd', function (Blueprint $table) {
             $table->bigIncrements('id_opd');
             $table->string("nama_opd")->nullable(false);
+            $table->string("idmyasn_unor")->nullable();
         });
     }
 
